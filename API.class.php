@@ -21,24 +21,22 @@ class API
 	private static $tmData;
 	private static $tmData2;
 	
-	private static $weatherData_params;
-	private static $dustData_params;
-	private static $pmData_params;
-	private static $pm25Data_params;
-	private static $tmData_params;
-	private static $tmData2_params;
-	private static $closest_params;
-	private static $weather_params;
-	
 	public function getPMStatus($value)
 	{
-		if ($value < 30) {
+		if ($value < 30) 
+		{
 			return 1;
-		} else if ($value < 80) {
+		} 
+		else if ($value < 80) 
+		{
 			return 2;
-		} else if ($value < 150) {
+		} 
+		else if ($value < 150) 
+		{
 			return 3;
-		} else if ($value >= 150) {
+		} 
+		else if ($value >= 150) 
+		{
 			return 4;
 		}
 	}
@@ -55,11 +53,6 @@ class API
 		);
 		
 		$requestParameter = http_build_query($params);
-		
-		self::$closest_params = array(
-			'parameter' => $params,
-			'url' => urldecode("http://openapi.airkorea.or.kr/openapi/services/rest/MsrstnInfoInqireSvc/getNearbyMsrstnList?{$requestParameter}")
-		);
 		
 		$getClosest = function () use ($requestParameter) {
 			$ch = curl_init();
@@ -99,11 +92,6 @@ class API
 		);
 		
 		$requestParameter = http_build_query($params);
-		
-		self::$dustData_params = array(
-			'parameter' => $params,
-			'url' => urldecode("http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?{$requestParameter}")
-		);
 		
 		$setFineDust = function () use ($requestParameter) {
 			$ch = curl_init();
@@ -203,11 +191,6 @@ class API
 		);
 		
 		$requestParameter = http_build_query($params);
-		
-		self::$weather_params = array(
-			'parameter' => $params,
-			'url' => urldecode("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?{$requestParameter}")
-		);
 		
 		$getDate = function () use ($requestParameter) {
 			$requestURL = urldecode("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?{$requestParameter}");
