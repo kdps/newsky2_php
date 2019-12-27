@@ -5,6 +5,9 @@ namespace /NewSky2
 class API
 {
 	
+	private static $serviceKey;
+	private static $kakaoKey;
+	
 	private static $lgt;
 	private static $lat;
 	
@@ -20,6 +23,23 @@ class API
 	private static $pm25Data;
 	private static $tmData;
 	private static $tmData2;
+	
+
+	private static $locationArray = array();
+	
+	public function __construct ($x, $y, $serviceKey, $kakaoKey)
+	{
+		self::$lgt = $x;
+		self::$lat = $y;
+		
+		self::$serviceKey = $serviceKey;
+		self::$kakaoKey = $kakaoKey;
+		
+		self::$locationArray = array(
+			'x' => self::$lgt,
+			'y' => self::$lat
+		);
+	}
 	
 	public function getTmData()
 	{
