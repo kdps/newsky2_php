@@ -4,7 +4,7 @@ namespace /NewSky2
 
 class API
 {
-
+	
 	private static $lgt;
 	private static $lat;
 	
@@ -20,6 +20,51 @@ class API
 	private static $pm25Data;
 	private static $tmData;
 	private static $tmData2;
+	
+	public function getTmData()
+	{
+		return self::$tmData;
+	}
+	
+	public function getTm2Data()
+	{
+		return self::$tmData2;
+	}
+	
+	public function getDustData()
+	{
+		return self::$dustData;
+	}
+	
+	public function getWeatherData()
+	{
+		return self::$weatherData;
+	}
+	
+	public function getPmData()
+	{
+		return self::$pmData;
+	}
+	
+	public function getPm25Data()
+	{
+		return self::$pm25Data;
+	}
+	
+	public function getSkyData()
+	{
+		return self::$sky;
+	}
+	
+	public function getPtyData()
+	{
+		return self::$pty;
+	}
+	
+	public function getT3hData()
+	{
+		return self::$t3h;
+	}
 	
 	public function getPMStatus($value)
 	{
@@ -113,7 +158,7 @@ class API
 			return $result;
 		};
 		
-    $dustData = $setFineDust( $stationName );
+    		$dustData = $setFineDust( $stationName );
 		
 		$dustArrayData = json_decode($dustData)->list;
 		self::$dustData = $dustArrayData;
