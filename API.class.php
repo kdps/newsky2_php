@@ -24,8 +24,40 @@ class API
 	private static $tmData;
 	private static $tmData2;
 	
-
 	private static $locationArray = array();
+	
+	public function setWeatherData()
+	{
+		$weatherData = self::$weatherData;
+		
+		$sky = 0;
+		$pty = 0;
+		$t3h = 0;
+
+		if ($weatherData->response->header->resultCode == '0000') {
+			$eachData = $weatherData->response->body->items->item;
+
+			foreach ($eachData as $key=>$val) {
+				switch($val->category) {
+					default:
+						break;
+					case "SKY":
+						$sky = $val->fcstValue;
+						break;
+					case "PTY":
+						$pty = $val->fcstValue;
+						break;
+					case "T3H":
+						$t3h = $val->fcstValue;
+						break;
+				}
+			}
+		}
+		
+		self::$sky = $sky;
+		self::$pty = $pty;
+		self::$t3h = $t3h;
+	}
 	
 	public function __construct ($x, $y, $serviceKey, $kakaoKey)
 	{
